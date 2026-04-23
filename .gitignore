@@ -1,0 +1,117 @@
+# Dependencies
+node_modules/
+*/node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+backend/.env
+frontend/.env
+
+# Build outputs
+dist/
+build/
+*/dist/
+*/build/
+backend/dist/
+frontend/build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+backend/logs/
+combined.log
+error.log
+exceptions.log
+rejections.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Docker
+docker-compose.override.yml
+*.pid
+*.seed
+*.pid.lock
+
+# Database
+*.sqlite
+*.db
+postgres-data/
+pgdata/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS
+Thumbs.db
+.DS_Store
+
+# TypeScript
+*.tsbuildinfo
+
+# Misc
+.cache/
+.parcel-cache/
+
+# Debug and fix documentation (keep only main docs)
+APPLICATION_RUNNING.md
+AUTHENTICATION_COMPLETE_FIX.md
+AUTH_FIX_COMPLETE.md
+COMPLETE_TEST_GUIDE.md
+COMPLETION_REPORT.md
+FILE_STRUCTURE.md
+FINAL_AUTH_SOLUTION.md
+FINAL_FIX.md
+FINAL_FIXES_SUMMARY.md
+GITHUB_READY.md
+INSTALL_GUIDE.md
+INTEGRATION_FIX_COMPLETE.md
+LOGIN_FIX_COMPLETE.md
+NEXT_STEPS.txt
+PROJECT_SUMMARY.md
+QUICK_INSTALL.txt
+RATE_LIMIT_FIX_COMPLETE.md
+SETUP_PROGRESS.txt
+SQL_FIX_COMPLETE.md
+TASK_CREATE_FIX_COMPLETE.md
+TEST_AUTH_FLOW.md
+
+# Test HTML files
+demo.html
+test-login.html
+frontend/public/clear-storage.html
+frontend/public/debug-login.html
+frontend/public/direct-login.html
+frontend/public/fix-login.html
+frontend/public/quick-test.html
+frontend/public/test-auth.html
+
+# Setup scripts (keep only main ones)
+auto-install.ps1
+automated-setup.ps1
+setup-after-nodejs.ps1
+start-app.ps1
+start-backend.ps1
+start-frontend.ps1
+QUICK_START.bat
+RUN_SETUP.bat
+check-users.js
