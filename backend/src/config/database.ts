@@ -9,18 +9,27 @@ dotenv.config({ path: path.join(__dirname, '../../.env') });
 /**
  * Database Configuration
  * Implements connection pooling for PostgreSQL with multi-tenant support
+ * Supports both individual config and DATABASE_URL for cloud deployment
  */
-const poolConfig: PoolConfig = {
-  host: process.env.DB_HOST || 'localhost',
-  port: parseInt(process.env.DB_PORT || '5432'),
-  database: process.env.DB_NAME || 'taskmaster_db',
-  user: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD,
-  max: 20, // Maximum number of clients in the pool
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
-  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
-};
+const poolConfig: PoolConfig = process.env.DATABASE_URL
+  ? {
+      connectionString: process.env.DATABASE_URL,
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+      max: 20,
+      idleTimeoutMillis: 30000,
+      connectionTimeoutMillis: 2000,
+    }
+  : {
+      host: process.env.DB_HOST || 'localhost',
+      port: parseInt(process.env.DB_PORT || '5432'),
+      database: process.env.DB_NAME || 'taskmaster_db',
+      user: process.env.DB_USER || 'postgres',
+      password: process.env.DB_PASSWORD,
+      max: 20,
+      idleTimeoutMillis: 30000,
+      connectionTimeoutMillis: 2000,
+      ssl: false,
+    };
 
 // Create connection pool
 export const pool = new Pool(poolConfig);

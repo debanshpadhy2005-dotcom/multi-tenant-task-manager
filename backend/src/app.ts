@@ -31,8 +31,12 @@ app.use(helmet({
 }));
 
 // CORS configuration
+const allowedOrigins = process.env.FRONTEND_URL 
+  ? [process.env.FRONTEND_URL, 'http://localhost:3000', 'http://localhost:3001']
+  : ['http://localhost:3000', 'http://localhost:3001'];
+
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001'],
+  origin: allowedOrigins,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
@@ -59,8 +63,10 @@ if (process.env.NODE_ENV === 'development') {
 // Input sanitization
 app.use(sanitizeInput);
 
-// Rate limiting - DISABLED FOR DEVELOPMENT
-// app.use('/api', apiLimiter);
+// Rate limiting
+if (process.env.NODE_ENV === 'production') {
+  app.use('/api', apiLimiter);
+}
 
 // Swagger documentation
 const swaggerOptions = {

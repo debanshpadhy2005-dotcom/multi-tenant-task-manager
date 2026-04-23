@@ -32,9 +32,13 @@ async function startServer() {
     });
 
     // Setup WebSocket for real-time updates
+    const allowedOrigins = process.env.FRONTEND_URL 
+      ? [process.env.FRONTEND_URL, 'http://localhost:3000', 'http://localhost:3001']
+      : ['http://localhost:3000', 'http://localhost:3001'];
+
     const io = new SocketIOServer(httpServer, {
       cors: {
-        origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+        origin: allowedOrigins,
         credentials: true,
       },
     });
